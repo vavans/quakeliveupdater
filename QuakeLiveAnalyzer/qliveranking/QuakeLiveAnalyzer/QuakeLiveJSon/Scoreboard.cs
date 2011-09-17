@@ -1,0 +1,151 @@
+﻿// JSON C# Class Generator
+// http://at-my-window.blogspot.com/?page=json-class-generator
+
+using System;
+using Newtonsoft.Json.Linq;
+using JsonCSharpClassGenerator;
+
+namespace QuakeLiveAnalyzer.QuakeLiveJSon
+{
+    internal class Scoreboard
+    {
+        public Scoreboard(JObject obj)
+        {
+           this.PGA = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "PG_A"));
+           this.GAUNTLETKILLS = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "GAUNTLET_KILLS"));
+           this.MIN = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "MIN"));
+           this.RAILGUNKILLS = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "RAILGUN_KILLS"));
+           this.CHAINGUNKILLS = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "CHAINGUN_KILLS"));
+           this.SHOTGUNACCURACY = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "SHOTGUN_ACCURACY"));
+           this.RANK = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "RANK"));
+           this.DAMAGEDEALT = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "DAMAGE_DEALT"));
+           this.DAMAGETAKEN = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "DAMAGE_TAKEN"));
+           this.HUMILIATION = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "HUMILIATION"));
+           this.BFGA = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "BFG_A"));
+           this.NG = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "NG"));
+           this.CGA = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "CG_A"));
+           this.GAUNTLETACCURACY = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "GAUNTLET_ACCURACY"));
+           this.LG = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "LG"));
+           this.NAILGUNKILLS = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "NAILGUN_KILLS"));
+           this.LGA = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "LG_A"));
+           this.LIGHTNINGACCURACY = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "LIGHTNING_ACCURACY"));
+           this.PLASMAACCURACY = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "PLASMA_ACCURACY"));
+           this.PLAYERCOUNTRY = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "PLAYER_COUNTRY"));
+           this.QUIT = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "QUIT"));
+           this.RLA = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "RL_A"));
+           this.PLAYERNICK = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "PLAYER_NICK"));
+           this.RG = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "RG"));
+           this.PG = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "PG"));
+           this.TEAM = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "TEAM"));
+           this.RL = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "RL"));
+           this.PMA = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "PM_A"));
+           this.ROCKETKILLS = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "ROCKET_KILLS"));
+           this.ACCURACY = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "ACCURACY"));
+           this.SHOTGUNKILLS = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "SHOTGUN_KILLS"));
+           this.MACHINEGUNACCURACY = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "MACHINEGUN_ACCURACY"));
+           this.GT = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "GT"));
+           this.BFG = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "BFG"));
+           this.PLAYERCLAN = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "PLAYER_CLAN"));
+           this.DEATHS = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "DEATHS"));
+           this.BFGKILLS = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "BFG_KILLS"));
+           this.PROXMINEACCURACY = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "PROXMINE_ACCURACY"));
+           this.CG = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "CG"));
+           this.BFGACCURACY = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "BFG_ACCURACY"));
+           this.NGA = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "NG_A"));
+           this.GTA = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "GT_A"));
+           this.SCORE = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "SCORE"));
+           this.PLAYERMODEL = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "PLAYER_MODEL"));
+           this.GRENADEACCURACY = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "GRENADE_ACCURACY"));
+           this.PROXMINEKILLS = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "PROXMINE_KILLS"));
+           this.GL = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "GL"));
+           this.GRENADEKILLS = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "GRENADE_KILLS"));
+           this.TEAMRANK = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "TEAM_RANK"));
+           this.MACHINEGUNKILLS = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "MACHINEGUN_KILLS"));
+           this.MG = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "MG"));
+           this.PLAYTIME = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "PLAY_TIME"));
+           this.CHAINGUNACCURACY = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "CHAINGUN_ACCURACY"));
+           this.IMPRESSIVE = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "IMPRESSIVE"));
+           this.KILLS = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "KILLS"));
+           this.RGA = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "RG_A"));
+           this.SG = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "SG"));
+           this.SGA = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "SG_A"));
+           this.ROCKETACCURACY = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "ROCKET_ACCURACY"));
+           this.NAILGUNACCURACY = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "NAILGUN_ACCURACY"));
+           this.PM = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "PM"));
+           this.EXCELLENT = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "EXCELLENT"));
+           this.MGA = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "MG_A"));
+           this.GLA = JsonClassHelper.ReadInteger(JsonClassHelper.GetJToken<JValue>(obj, "GL_A"));
+           this.RAILGUNACCURACY = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "RAILGUN_ACCURACY"));
+           this.LIGHTNINGKILLS = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "LIGHTNING_KILLS"));
+           this.PLASMAKILLS = JsonClassHelper.ReadString(JsonClassHelper.GetJToken<JValue>(obj, "PLASMA_KILLS"));
+        }
+
+        public readonly int PGA;
+        public readonly string GAUNTLETKILLS;
+        public readonly int MIN;
+        public readonly string RAILGUNKILLS;
+        public readonly string CHAINGUNKILLS;
+        public readonly string SHOTGUNACCURACY;
+        public readonly string RANK;
+        public readonly string DAMAGEDEALT;
+        public readonly string DAMAGETAKEN;
+        public readonly string HUMILIATION;
+        public readonly int BFGA;
+        public readonly int NG;
+        public readonly int CGA;
+        public readonly string GAUNTLETACCURACY;
+        public readonly int LG;
+        public readonly string NAILGUNKILLS;
+        public readonly int LGA;
+        public readonly string LIGHTNINGACCURACY;
+        public readonly string PLASMAACCURACY;
+        public readonly string PLAYERCOUNTRY;
+        public readonly string QUIT;
+        public readonly int RLA;
+        public readonly string PLAYERNICK;
+        public readonly int RG;
+        public readonly int PG;
+        public readonly string TEAM;
+        public readonly int RL;
+        public readonly int PMA;
+        public readonly string ROCKETKILLS;
+        public readonly int ACCURACY;
+        public readonly string SHOTGUNKILLS;
+        public readonly string MACHINEGUNACCURACY;
+        public readonly int GT;
+        public readonly int BFG;
+        public readonly string PLAYERCLAN;
+        public readonly int DEATHS;
+        public readonly string BFGKILLS;
+        public readonly string PROXMINEACCURACY;
+        public readonly int CG;
+        public readonly string BFGACCURACY;
+        public readonly int NGA;
+        public readonly int GTA;
+        public readonly int SCORE;
+        public readonly string PLAYERMODEL;
+        public readonly string GRENADEACCURACY;
+        public readonly string PROXMINEKILLS;
+        public readonly int GL;
+        public readonly string GRENADEKILLS;
+        public readonly string TEAMRANK;
+        public readonly string MACHINEGUNKILLS;
+        public readonly int MG;
+        public readonly int PLAYTIME;
+        public readonly string CHAINGUNACCURACY;
+        public readonly string IMPRESSIVE;
+        public readonly int KILLS;
+        public readonly int RGA;
+        public readonly int SG;
+        public readonly int SGA;
+        public readonly string ROCKETACCURACY;
+        public readonly string NAILGUNACCURACY;
+        public readonly int PM;
+        public readonly string EXCELLENT;
+        public readonly int MGA;
+        public readonly int GLA;
+        public readonly string RAILGUNACCURACY;
+        public readonly string LIGHTNINGKILLS;
+        public readonly string PLASMAKILLS;
+    }
+}
