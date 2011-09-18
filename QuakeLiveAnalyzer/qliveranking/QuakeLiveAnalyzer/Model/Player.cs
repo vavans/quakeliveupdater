@@ -5,87 +5,93 @@ using System.Text;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Xml.Serialization;
+using QuakeLiveAnalyzer.Ranking;
 
 namespace QuakeLiveAnalyzer.Model
 {
-	[XmlRoot("Player")]
-	[XmlInclude(typeof(QueryableObject))]
-	public class Player : QueryableObject
-	{
-		[XmlAttribute("LastQueryTimestamp")]
-		public long LastQueryTimestamp { get; set; }
+    [XmlRoot("Player")]
+    [XmlInclude(typeof(QueryableObject))]
+    public class Player : QueryableObject
+    {
+        [XmlAttribute("LastQueryTimestamp")]
+        public long LastQueryTimestamp { get; set; }
 
-		[XmlArray("Matchs")]
-		[XmlArrayItem("Match", typeof(MatchID))]
-		public ObservableCollection<MatchID> MatchsIds { get; set; }
+        [XmlArray("Matchs")]
+        [XmlArrayItem("Match", typeof(MatchID))]
+        public ObservableCollection<MatchID> MatchsIds { get; set; }
 
-		public Player()
-		{ }
+        internal Elo Elo { get; set; }
 
-		public Player(string name) : base(name)
-		{
-			MatchsIds = new ObservableCollection<MatchID>();
-		}
+        public Player()
+        {
+            Elo = new Elo();
+        }
 
-		public override string GetUrlFromId(string id)
-		{
-			string dateString = DateTime.UtcNow.ToString("yyyy-MM-dd");
+        public Player(string name) : base(name)
+        {
+            MatchsIds = new ObservableCollection<MatchID>();
+            Elo = new Elo();
+        }
 
-			return string.Format(@"http://www.quakelive.com/profile/matches_by_week/{0}/{1}", id, dateString);
-		}
+        public override string GetUrlFromId(string id)
+        {
+            string dateString = DateTime.UtcNow.ToString("yyyy-MM-dd");
 
-		internal void AddGame(string id)
-		{
-			if (id.StartsWith("ca_", StringComparison.InvariantCultureIgnoreCase) && !MatchsIds.Any(m => m.Id == id))
-			{
-				MatchsIds.Add(new MatchID(id));
-			}
-		}
+            return string.Format(@"http://www.quakelive.com/profile/matches_by_week/{0}/{1}", id, dateString);
+        }
 
-		public override void MergeData(QueryableObject obj)
-		{
-			Player player = obj as Player;
-			if (player == null)
-			{
-				return;
-			}
+        internal void AddGame(string id)
+        {
+            if (id.StartsWith("ca_", StringComparison.InvariantCultureIgnoreCase) && !MatchsIds.Any(m => m.Id == id))
+            {
+                MatchsIds.Add(new MatchID(id));
+            }
+        }
 
-			LastQueryTimestamp = Math.Max(player.LastQueryTimestamp, LastQueryTimestamp);
+        public override void MergeData(QueryableObject obj)
+        {
+            Player player = obj as Player;
+            if (player == null)
+            {
+                return;
+            }
 
-			foreach (MatchID id in player.MatchsIds)
-			{
-				MatchID firstId = MatchsIds.FirstOrDefault(m => m.Id == id.Id);
-				if (firstId == null)
-				{
-					MatchsIds.Add(id);
-				}
-				else
-				{
-					firstId.MergeData(id);
-				}
-			}
-		}
+            LastQueryTimestamp = Math.Max(player.LastQueryTimestamp, LastQueryTimestamp);
 
-		public override void UpdateState()
-		{
-			if (LastQueryTimestamp == 0)
-			{
-				State = Model.State.Waiting;
-				return;
-			}
+            foreach (MatchID id in player.MatchsIds)
+            {
+                MatchID firstId = MatchsIds.FirstOrDefault(m => m.Id == id.Id);
+                if (firstId == null)
+                {
+                    MatchsIds.Add(id);
+                }
+                else
+                {
+                    firstId.MergeData(id);
+                }
+            }
+        }
 
-			TimeSpan timeSpan = new TimeSpan(DateTime.UtcNow.Ticks - LastQueryTimestamp);
+        public override void UpdateState()
+        {
+            if (LastQueryTimestamp == 0)
+            {
+                State = Model.State.Waiting;
+                return;
+            }
 
-			// On refresh la liste des matchs d'un joueur tous les 3 jours
+            TimeSpan timeSpan = new TimeSpan(DateTime.UtcNow.Ticks - LastQueryTimestamp);
 
-			if (timeSpan.Hours >= 72)
-			{
-				State = Model.State.Waiting;
-			}
-			else
-			{
-				State = Model.State.Done;
-			}
-		}
-	}
+            // On refresh la liste des matchs d'un joueur tous les 3 jours
+
+            if (timeSpan.Hours >= 72)
+            {
+                State = Model.State.Waiting;
+            }
+            else
+            {
+                State = Model.State.Done;
+            }
+        }
+    }
 }

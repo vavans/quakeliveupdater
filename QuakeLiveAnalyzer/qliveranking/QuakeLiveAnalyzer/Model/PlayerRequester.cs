@@ -12,36 +12,38 @@ using System;
 
 namespace QuakeLiveAnalyzer.Model
 {
-	public class PlayerRequester : ASyncRequester<Player>
-	{
-		public PlayerRequester(IPopulable<Player> playersContainer, int delay, int maxThreads)
-			: base(playersContainer, delay, maxThreads)
-		{ }
+    public class PlayerRequester : ASyncRequester<Player>
+    {
+        public PlayerRequester(IPopulable<Player> playersContainer, int delay, int maxThreads)
+            : base(playersContainer, delay, maxThreads)
+        { }
 
-		protected override void UpdateContainerAfterQuery(Player player, string response)
-		{
-			player.LastQueryTimestamp = DateTime.UtcNow.Ticks;
+        //Le serveur a répondu l'ensemble des matchs de la semaine pour le joueurs
+        protected override void UpdateContainerAfterQuery(Player player, string response)
+        {
+            player.LastQueryTimestamp = DateTime.UtcNow.Ticks;
 
-			foreach (string id in ParseResponse(response))
-			{
-				player.AddGame(id);
-			}
-		}
+            foreach (string id in ParseResponse(response))
+            {
+                player.AddGame(id);
+            }
+        }
 
-		private static List<string> ParseResponse(string xml)
-		{
-			HashSet<string> list = new HashSet<string>();
+        //Parse la liste des matchs de la semaine du joueur
+        private static List<string> ParseResponse(string xml)
+        {
+            HashSet<string> list = new HashSet<string>();
 
-			Regex regEx = new Regex(@"<div class=\""areaMapC\"" id=\""([^\""]+)\"">");
+            Regex regEx = new Regex(@"<div class=\""areaMapC\"" id=\""([^\""]+)\"">");
 
-			MatchCollection matchCollection = regEx.Matches(xml);
+            MatchCollection matchCollection = regEx.Matches(xml);
 
-			foreach (System.Text.RegularExpressions.Match m in matchCollection)
-			{
-				list.Add(m.Groups[1].Value);
-			}
+            foreach (System.Text.RegularExpressions.Match m in matchCollection)
+            {
+                list.Add(m.Groups[1].Value);
+            }
 
-			return list.ToList();
-		}
-	}
+            return list.ToList();
+        }
+    }
 }
